@@ -1,0 +1,34 @@
+{
+  "name": "@rbxts/formatting",
+  "version": "1.0.0",
+  "main": "out/init.lua",
+  "scripts": {
+    "build": "rbxtsc",
+    "watch": "rbxtsc -w",
+    "prepublishOnly": "npm run build"
+  },
+  "repository": {
+    "url": "git+https://github.com/R-unic/rbx-formatting"
+  },
+  "keywords": [],
+  "author": "runicly",
+  "license": "ISC",
+  "description": "Utility functions for formatting numbers and parsing strings back into numbers for Roblox",
+  "types": "out/index.d.ts",
+  "files": [
+    "out",
+    "!**/*.tsbuildinfo"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@rbxts/compiler-types": "^3.0.0-types.0",
+    "@rbxts/types": "^1.0.813",
+    "roblox-ts": "^3.0.0",
+    "typescript": "^5.7.2"
+  },
+  "dependencies": {
+    "@rbxts/string-utils": "^1.0.3"
+  }
+}
