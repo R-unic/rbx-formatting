@@ -7,16 +7,15 @@ const { floor, log } = math;
  * @example commaFormat(1000000) // 1,000,000
  */
 export function commaFormat(n: number | string): string {
-	let formatted = tostring(n);
-	const parts: string[] = [];
+	let formatted = tostring(n)
+		.reverse()
+		.gsub("(%d%d%d)", "%1,")[0]
+		.reverse();
 
-	while (formatted.size() > 3) {
-		parts.insert(0, formatted.sub(-3));
-		formatted = formatted.sub(1, -4);
-	}
+	if (formatted.sub(1, 1) === ",")
+		formatted = formatted.sub(2);
 
-	parts.insert(0, formatted);
-	return parts.join(",");
+	return formatted;
 }
 
 const baseSuffixes = [
