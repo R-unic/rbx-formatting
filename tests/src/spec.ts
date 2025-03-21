@@ -38,6 +38,11 @@ class FormattingTest {
     Assert.equal(expected, parseAbbreviated(input));
   }
 
+  @Fact
+  public parseAbbreviatedThrows(): void {
+    Assert.throws(() => parseAbbreviated("1l"), "[@rbxts/formatting]: Invalid suffixed number format");
+  }
+
   @Theory
   @InlineData("30", 30)
   @InlineData("30s", 30)

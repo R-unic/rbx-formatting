@@ -80,7 +80,7 @@ export function abbreviate(n: number, threshold = 1000, suffixes = defaultSuffix
 export function parseAbbreviated(suffixed: string, suffixes = defaultSuffixes): number {
   const regex = createCaseInsensitiveRegex(suffixes);
   const match = trim(suffixed.gsub(",", "")[0]).match(`^([0-9,.]+)([(${regex})]?)$`);
-  if (!match)
+  if (match[0] === undefined || match[1] === undefined)
     throw "[@rbxts/formatting]: Invalid suffixed number format";
 
   let numberPart = tonumber(match[0])!;
@@ -88,9 +88,6 @@ export function parseAbbreviated(suffixed: string, suffixes = defaultSuffixes): 
 
   if (suffix !== undefined && suffix !== "" && suffix !== "nil") {
     const index = suffixes.indexOf(capitalize(suffix.lower()));
-    if (index === -1)
-      throw "[@rbxts/formatting]: Invalid suffix in suffixed number";
-
     const multiplier = 10 ** ((index + 1) * 3);
     numberPart *= multiplier;
   }
